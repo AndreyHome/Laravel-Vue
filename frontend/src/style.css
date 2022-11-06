@@ -1,0 +1,6 @@
+a {
+  text-decoration: inherit;
+}
+a:hover {
+  color: #2f2fd5;
+}
