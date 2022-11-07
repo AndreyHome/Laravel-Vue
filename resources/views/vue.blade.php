@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
+    {{--<link rel="icon" type="image/ico" sizes="32x32" href="/favicon.ico">--}}
 
     @vite(['resources/sass/app.scss'])
 
@@ -21,7 +22,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             @auth
-                <a href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     Laravel {{ __('Logout') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -36,16 +37,8 @@
         </div>
     </nav>
 @endif
-<main>
-    <div class="container" id="app">
-        @if(isset($access_token))
-            <script>
-                window.token = '{{ $access_token }}';
-            </script>
-            <vue-index></vue-index>
-        @else
-            <vue-index></vue-index>
-        @endif
+<main class="container">
+    <div id="app">
     </div>
 </main>
 <script src="/{{$manifest['src/main.js']['file']}}"></script>

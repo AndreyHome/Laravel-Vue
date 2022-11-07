@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/loadData', [App\Http\Controllers\HomeController::class, 'index']);
 });
 
-Route::middleware(['auth:api'])->group(function () {
-    info('Here api Request');
-});
+
+// This route only for Frontend Development
+if (config('app.env') == 'local') {
+    Route::get('/loadData', [App\Http\Controllers\HomeController::class, 'index']);
+}
+
 
 Route::fallback(function () {
     return response()->json([
