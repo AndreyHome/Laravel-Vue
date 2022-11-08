@@ -14,18 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-function allRoutes()
-{
-    Route::get('/loadData', [App\Http\Controllers\HomeController::class, 'index']);
-}
-
 
 Route::middleware('auth:sanctum')->group(function () {
-    allRoutes();
+    Route::get('/loadData', [App\Http\Controllers\HomeController::class, 'index']);
 });
+
+
 // It is only for Frontend Development when he is in another domain
 if (config('app.env') == 'local') {
-    allRoutes();
+    Route::get('/loadData', [App\Http\Controllers\HomeController::class, 'index']);
 }
 
 
